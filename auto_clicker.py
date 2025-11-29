@@ -52,7 +52,8 @@ class AutoClickerApp:
     def load_config(self):
         if os.path.exists(CONFIG_FILE):
             try:
-                loaded = json.load(f)
+                with open(CONFIG_FILE, "r") as f:
+                    loaded = json.load(f)
                 # 合併預設值，防止舊版 config 缺漏
                 return {**DEFAULT_CONFIG, **loaded}
             except:
