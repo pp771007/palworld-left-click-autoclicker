@@ -20,6 +20,10 @@ class AutoClickerApp:
     def __init__(self, root):
         self.root = root
         self.root.title("《帕魯》右鍵連點")
+        try:
+            self.root.iconbitmap("icon.ico")
+        except:
+            pass  # 如果圖標載入失敗，忽略
         self.root.geometry("280x160")
         self.root.resizable(False, False)
 
