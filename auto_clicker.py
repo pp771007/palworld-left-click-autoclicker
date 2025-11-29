@@ -19,7 +19,7 @@ DEFAULT_CONFIG = {
 class AutoClickerApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("《帕魯》右鍵連點")
+        self.root.title("右鍵連點器")
         try:
             self.root.iconbitmap("icon.ico")
         except:
@@ -27,8 +27,9 @@ class AutoClickerApp:
         
         self.config = self.load_config()
 
-        win_w = 280
+        win_w = 260
         win_h = 160
+        
         x = self.config.get("window_x")
         y = self.config.get("window_y")
 
@@ -103,30 +104,29 @@ class AutoClickerApp:
         main_frame = ttk.Frame(self.root, padding="15")
         main_frame.pack(fill=tk.BOTH, expand=True)
 
+        settings_frame = ttk.LabelFrame(main_frame, text="設定", padding=10)
+        settings_frame.pack(fill=tk.X, pady=(0, 15))
+
+        ttk.Label(settings_frame, text="熱鍵:").pack(side=tk.LEFT, padx=(0, 5))
+        
+        hotkeys = [f"F{i}" for i in range(1, 13)]
+        self.combo_hotkey = ttk.Combobox(settings_frame, textvariable=self.var_trigger_key, values=hotkeys, state="readonly", width=4)
+        self.combo_hotkey.pack(side=tk.LEFT, padx=(0, 10))
+
+        ttk.Label(settings_frame, text="次數:").pack(side=tk.LEFT, padx=(0, 5))
+        
+        spin_count = ttk.Spinbox(settings_frame, from_=1, to=100, textvariable=self.var_count, width=4)
+        spin_count.pack(side=tk.LEFT)
+
         self.btn_toggle = tk.Button(
             main_frame, 
             textvariable=self.btn_text, 
             command=self.toggle_running,
-            font=("Arial", 12, "bold"),
+            font=("Arial", 11, "bold"),
             bg="#90ee90",
             height=2
         )
-        self.btn_toggle.pack(fill=tk.X, pady=(0, 15))
-
-        frame_hotkey = ttk.Frame(main_frame)
-        frame_hotkey.pack(fill=tk.X, pady=5)
-        ttk.Label(frame_hotkey, text="熱鍵:").pack(side=tk.LEFT)
-        
-        hotkeys = [f"F{i}" for i in range(1, 13)]
-        self.combo_hotkey = ttk.Combobox(frame_hotkey, textvariable=self.var_trigger_key, values=hotkeys, state="readonly", width=8)
-        self.combo_hotkey.pack(side=tk.RIGHT)
-
-        frame_count = ttk.Frame(main_frame)
-        frame_count.pack(fill=tk.X, pady=5)
-        ttk.Label(frame_count, text="次數 (1-100):").pack(side=tk.LEFT)
-        
-        spin_count = ttk.Spinbox(frame_count, from_=1, to=100, textvariable=self.var_count, width=8)
-        spin_count.pack(side=tk.RIGHT)
+        self.btn_toggle.pack(fill=tk.X)
 
     def toggle_running(self):
         self.is_running = not self.is_running
