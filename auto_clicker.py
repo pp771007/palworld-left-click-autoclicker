@@ -19,7 +19,7 @@ DEFAULT_CONFIG = {
 class AutoClickerApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("右鍵連點器")
+        self.root.title("左鍵連點器")
         try:
             self.root.iconbitmap("icon.ico")
         except:
@@ -151,8 +151,8 @@ class AutoClickerApp:
                 count = 10
             
             for _ in range(count):
-                win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0)
-                win32api.mouse_event(win32con.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0)
+                win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+                win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
         finally:
             self.click_lock.release()
 
