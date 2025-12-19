@@ -23,7 +23,7 @@
 
 ## 📥 下載
 
-➡️ **[前往 GitHub Releases 下載](https://github.com/pp771007/palworld-right-click-autoclicker/releases)**
+➡️ **[前往 GitHub Releases 下載](https://github.com/pp771007/palworld-left-click-autoclicker/releases)**
 
 ## 📄 許可證
 
